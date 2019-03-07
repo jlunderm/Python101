@@ -1,0 +1,8 @@
+#Class1HW for Jason
+a=2
+b=6
+
+print ("The sum of",a, "and", b,"is",a+b)
+print ("Subtracting",a, "from", b,"is",b-a)
+print ("Multiplying",a, "and",b, "is",a*b)
+print ("Dividing",a, "into", b, "is",b/a)
