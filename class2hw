@@ -1,0 +1,30 @@
+# Class 2 Homework
+
+import math as mt
+a=45
+b=90
+
+print (a,"plus",b, "is",a+b)
+print (b,"minus",a, "is",b-a)
+print (a,"times",b, "is",a*b)
+print (b,"divided by",a, "is",b/a)
+
+print ("The sin of",a, "is",round(mt.sin(a),2))
+print ("The cos of",a, "is",round(mt.cos(a),2))
+print ("The tan of",a, "is",round(mt.tan(a),2))
+
+print ("The exponential of",a, "is",round(mt.exp(a),2))
+print ("The square root of",a, "is",round(mt.sqrt(a),2))
+print ("The log of",a, "is",round(mt.log(a),2))
+
+for i in range(1,101):
+    if i%3==0 and i%5==0:
+        print("FizzBuzz")
+    else:
+        if i%3==0:
+            print("Fizz")
+        else:
+            if i%5==0:
+                print("Buzz")
+            else:
+                print(i)
