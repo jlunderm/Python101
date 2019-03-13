@@ -1,0 +1,43 @@
+import os
+import pandas as pd
+import math
+import numpy as np
+import random
+
+path = 'https://raw.githubusercontent.com/vikrambj2019/basic/master/Data/'
+filename_read=os.path.join(path,"boston-house-prices.csv")
+df=pd.read_csv(filename_read,na_values=['NA','?'])
+
+df.head()
+
+df.tail(4)
+
+df.describe()
+
+df.info()
+
+top_three=['AGE','DIS','TAX']
+df[top_three].mean()
+
+lend(df)
+
+df.shape
+
+# ESTIMATING PROPERTY TAX OWED ON THE MEDIAN OWNER-OCCUPPIED HOME
+# ASSUMES 'TAX' = Property Tax Rate per $10,000 value of home
+# ASSUMES 'MEDV' = Median value of owner-occupied homes in $1,000s
+# THEREFORE...Property Tax = (MEDV*TAX)/10
+
+ df['Tax_Owed']=(df['TAX']*df['MEDV'])/10
+ df.head()
+ 
+ df[:2]
+ 
+ df.iloc[1,:]
+ 
+ range(len(df))
+ 
+ # I can generate unique random numbers
+ random.sample(range(1,507),1)
+ 
+ # But having trouble adding those numbers into column 'Random_Value'...
