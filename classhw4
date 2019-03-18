@@ -1,0 +1,64 @@
+## Homework After Class 4 - Jason
+
+
+#Peforming Functions from Cheatsheet
+
+import os
+import pandas as pd
+import numpy as np
+
+path = 'https://raw.githubusercontent.com/vikrambj2019/basic/master/Data/'
+filename_read=os.path.join(path,"auto-mpg.csv")
+df=pd.read_csv(filename_read,na_values=['NA','?'])
+
+df.to_csv('HW4Jason')
+
+df.describe()
+
+df.head(3)
+
+df.tail(5)
+
+df.info()
+
+df.shape
+
+df['cylinders'].value_counts(dropna=False)
+
+df_sub=df[['mpg','cylinders','horsepower','origin']]
+
+df_sub.columns=['mpg1','cylinders1','horsepower1','origin1']
+
+df.groupby('cylinders').agg(np.mean)
+
+df.count()
+
+for i in df.columns:
+    print(df[df[i].isnull()])
+
+df.groupby(['cylinders','origin'])['horsepower'].mean()
+
+df['horsepower']=df['horsepower'].fillna(df.groupby(['cylinders','origin'])['horsepower'].transform('mean'))
+
+## NOTE: Have to re-import original data 
+
+path = 'https://raw.githubusercontent.com/vikrambj2019/basic/master/Data/'
+filename_read=os.path.join(path,"auto-mpg.csv")
+df=pd.read_csv(filename_read,na_values=['NA','?'])
+
+## Grouping by cylinders then origin
+
+df.groupby(['cylinders','origin']).agg(np.mean)
+
+result=pd.DataFrame(df.groupby(['cylinders','origin'])['horsepower'].aggregate('mean'))
+
+result.head()
+
+## Merging df and result dataframes
+
+df_new=pd.merge(df,result,how='left',left_on=['cylinders','origin'],right_on=['cylinders','origin'])
+
+## Dropping miscellaneous 'horsepower_x' column after confirming no nulls in merged 'horsepower_y'
+
+df_new.count()
+df_new.drop(['horsepower_x'],axis=1)
