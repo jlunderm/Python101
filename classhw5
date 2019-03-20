@@ -1,0 +1,14 @@
+import os
+import pandas as pd
+import numpy as np
+import sys
+
+df = pd.read_csv (r'C:\Users\Lundy\Documents\Class\Python 101\Suduku.csv')
+
+df.head(9)
+
+a=np.array(df)
+a
+
+b = np.where(np.isnan(a), 0, a)
+
