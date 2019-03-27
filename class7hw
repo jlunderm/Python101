@@ -1,0 +1,44 @@
+## Homework Class 7 - Jason
+
+import os
+import pandas as pd
+import numpy as np
+from datetime import datetime
+from pandas import ExcelWriter
+from pandas import ExcelFile
+
+path = 'https://raw.githubusercontent.com/vikrambj2019/basic/master/Data/'
+filename_read=os.path.join(path,"TestdataTableau_v1.xlsx")
+df=pd.read_excel(filename_read,sheet_name='rawdata')
+
+df.head()
+
+## Create 'Margin' Column
+df['Margin']=df['Sales_amt']-df['Standard_Cost']-df['Metal_Cost']-df['Taxes']-df['FreightUnrecovered']
+
+df.head()
+
+## Check for Nulls
+for i in df.columns:
+    print (df[df[i].isnull()])   
+    
+## Check Unique Values for 'Product'
+df['Product'].unique()
+
+## Add 'CSt' to 'CST'
+df.loc[df['Product']=='CSt','Product']='CST'
+df['Product'].unique()
+
+## Check Unique Values for 'Customer Group'
+df['Customer Group'].unique()
+
+## Add 'little' to 'small'
+df.loc[df['Customer Group']=='little','Customer Group']='small'
+df['Customer Group'].unique()
+
+## Identify least profitable 'Customer Group'
+df['Margin'].groupby(df['Customer Group']).sum().nsmallest(1)
+
+## Identify least profitable 'City'
+df['Margin'].groupby(df['City']).sum().nsmallest(1)
+/
